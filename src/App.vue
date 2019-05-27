@@ -1,28 +1,43 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <Header/>
+      <todo-list :todos="todos"/>
+      <Footer/>
+    </div>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld'
+  import Header from './components/Header.vue'
+  import List from './components/List.vue'
+  import Footer from './components/Footer.vue'
+  export default {
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+    data () {
+      return {
+        todos: [
+          {id: 1, title: '吃饭', completed: false},
+          {id: 3, title: '睡觉', completed: true},
+          {id: 5, title: '打代码', completed: false},
+        ]
+      }
+    },
+
+    components: {
+      Header,
+      TodoList: List,
+      Footer
+    }
   }
-}
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 </style>
