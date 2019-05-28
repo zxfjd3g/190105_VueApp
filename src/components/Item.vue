@@ -1,17 +1,62 @@
 <template>
-  <li>
+  <li :style="{backgroundColor: bgColor}"
+      @mouseenter="handleEnter(true)"
+      @mouseleave="handleEnter(false)">
     <label>
-      <input type="checkbox" v-model="todo.completed"/>
+      <input type="checkbox" v-model="isCompleted"/>
       <span>{{todo.title}}</span>
     </label>
-    <button class="btn btn-danger" style="display:none">删除</button>
+    <button class="btn btn-danger" v-show="isShow" @click="deleteItem">删除</button>
   </li>
 </template>
 <script>
   export default {
     // 声明接收标签属性
     props: {
-      todo: Object
+      todo: Object,
+      deleteTodo: Function,
+      toggleTodo: Function,
+      index: Number
+    },
+
+    data () {
+      return {
+        isShow: false, // 标识按钮是否显示, 默认不显示
+        bgColor: 'white'
+      }
+    },
+
+    computed: {
+      // 是否勾选
+      isCompleted: {
+        // 动态确定是否勾选
+        get () {
+          return this.todo.completed
+        },
+        // 监视勾选状态的变化
+        set (value) { // 勾选状态发生了变化
+          console.log('set()', value)
+          this.toggleTodo(this.todo)
+        }
+      }
+    },
+
+    methods: {
+      handleEnter (isEnter) {
+        if (isEnter) {
+          this.bgColor = '#cccccc'
+          this.isShow = true
+        } else {
+          this.bgColor = '#ffffff'
+          this.isShow = false
+        }
+      },
+
+      deleteItem () {
+        if (confirm('确定删除吗?')) {
+          this.deleteTodo(this.index)
+        }
+      }
     }
   }
 </script>
@@ -38,7 +83,6 @@
 
   li button {
     float: right;
-    display: none;
     margin-top: 3px;
   }
 
