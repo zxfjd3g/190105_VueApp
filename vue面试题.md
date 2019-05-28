@@ -13,5 +13,17 @@
 ## 3. 写出vue 7个配置选项及其作用
 ## 4. 说说vue的生命周期
 ## 5. 比较函数的call()/apply()/bind()
-
 ## 6. 说说项目开发中常用的ES6新语法
+
+# day03
+## 1. vm对象与组件对象的关系
+## 2. 说说vue组件间通信的几种方式
+## 3. 组件化编码流程和2个重要问题
+## 4. 详细说明如何判断函数中的this
+## 5. 说说你对事件处理机制的理解
+## 6. 内存结构图(原型结构图)
+    function Foo () {}
+    const fn1 = new Foo()
+    const fn2 = new Foo()
+    const o1 = {}
+    const o2 = new Object()
