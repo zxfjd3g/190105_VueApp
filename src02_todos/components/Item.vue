@@ -10,12 +10,12 @@
   </li>
 </template>
 <script>
-  import PubSub from 'pubsub-js'
-
   export default {
     // 声明接收标签属性
     props: {
       todo: Object,
+      deleteTodo: Function,
+      toggleTodo: Function,
       index: Number
     },
 
@@ -36,9 +36,7 @@
         // 监视勾选状态的变化
         set (value) { // 勾选状态发生了变化
           console.log('set()', value)
-          // this.toggleTodo(this.todo)
-          // 通过事件总线分发事件
-          this.$bus.$emit('toggleTodo', this.todo)
+          this.toggleTodo(this.todo)
         }
       }
     },
@@ -56,9 +54,7 @@
 
       deleteItem () {
         if (confirm('确定删除吗?')) {
-          // this.deleteTodo(this.index)
-          // 发布消息(deleteTodo)
-          PubSub.publish('deleteTodo', this.index)
+          this.deleteTodo(this.index)
         }
       }
     }

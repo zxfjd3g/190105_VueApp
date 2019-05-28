@@ -7,6 +7,13 @@
   export default {
     name: 'Header',
 
+    props: { // 属性名, 属性值的类型, 属性的必要性
+      addTodo: {
+        type: Function,
+        required: true
+      }
+    },
+
     data () {
       return {
         title: ''
@@ -28,9 +35,7 @@
         }
 
         // 3. 调用addTodo添加todo并显示
-        // this.addTodo(todo)
-        // 分发自定义事件(addTodo)
-        this.$emit('addTodo', todo)
+        this.addTodo(todo)
 
         // 4. 清除输入数据
         this.title = ''

@@ -1,14 +1,13 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <Header @addTodo="addTodo"/>
-      <todo-list :todos="todos"/>
+      <Header :addTodo="addTodo"/>
+      <todo-list :todos="todos" :deleteTodo="deleteTodo" :toggleTodo="toggleTodo"/>
       <Footer :todos="todos" :checkAllTodos="checkAllTodos"/>
     </div>
   </div>
 </template>
 <script>
-  import PubSub from 'pubsub-js'
   import Header from './components/Header.vue'
   import List from './components/List.vue'
   import Footer from './components/Footer.vue'
@@ -16,28 +15,9 @@
   export default {
 
     data () {
-      console.log('App组件对象', this.xxx)
       return {
         todos: storageUtils.getTodos()
       }
-    },
-
-    mounted () {
-      // 订阅消息
-      this.token = PubSub.subscribe('deleteTodo', (msg, index) => {
-        this.deleteTodo(index)
-      })
-      // 绑定事件监听
-      this.$bus.$on('toggleTodo', (todo) => {
-        this.toggleTodo(todo)
-      })
-    },
-
-    beforeDestroy() {
-      // 取消消息订阅
-      PubSub.unsubscribe(this.token)
-      // 解除事件监听绑定
-      this.$bus.$off('toggleTodo')
     },
 
     methods: {
