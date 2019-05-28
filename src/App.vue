@@ -11,15 +11,12 @@
   import Header from './components/Header.vue'
   import List from './components/List.vue'
   import Footer from './components/Footer.vue'
+  import storageUtils from "./utils/storageUtils";
   export default {
 
     data () {
       return {
-        todos: [
-          {id: 1, title: '吃饭', completed: false},
-          {id: 3, title: '睡觉', completed: true},
-          {id: 5, title: '打代码', completed: false}
-        ]
+        todos: storageUtils.getTodos()
       }
     },
 
@@ -43,6 +40,17 @@
       checkAllTodos (isCheck) {
         this.todos.forEach(todo => todo.completed = isCheck)
       }
+    },
+
+    watch: {
+      todos: {
+        deep: true, // 深度监视
+        /*handler (val) {  // todos发生变化
+          // 将最新的todos保存到local
+          storageUtils.saveTodos(val)
+        },*/
+        handler: storageUtils.saveTodos
+      },
     },
 
 
