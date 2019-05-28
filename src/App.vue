@@ -3,7 +3,13 @@
     <div class="todo-wrap">
       <Header @addTodo="addTodo"/>
       <todo-list :todos="todos"/>
-      <Footer :todos="todos" :checkAllTodos="checkAllTodos"/>
+      <Footer>
+        <input type="checkbox" v-model="isCheck" slot="left"/>
+        <span slot="center">
+          <span>已完成{{completedCount}}</span> / 全部{{todos.length}}
+        </span>
+        <button class="btn btn-danger" v-show="completedCount>0" slot="right">清除已完成任务</button>
+      </Footer>
     </div>
   </div>
 </template>
@@ -16,9 +22,26 @@
   export default {
 
     data () {
-      console.log('App组件对象', this.xxx)
+      console.log('App组件对象', this.xxx, this)
       return {
         todos: storageUtils.getTodos()
+      }
+    },
+
+    computed: {
+      // 已完成的数量
+      completedCount () {
+        return this.todos.reduce((pre, todo) => pre + (todo.completed ? 1 : 0), 0)
+      },
+
+      // 是否全选
+      isCheck: {
+        get () {
+          return this.todos.length === this.completedCount && this.completedCount>0
+        },
+        set (value) {
+          this.checkAllTodos(value)
+        }
       }
     },
 
