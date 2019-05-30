@@ -50,8 +50,10 @@
       this.token = PubSub.subscribe('deleteTodo', (msg, index) => {
         this.deleteTodo(index)
       })
+      
       // 绑定事件监听
       this.$bus.$on('toggleTodo', (todo) => {
+        console.log('toggleTodo event listener()')
         this.toggleTodo(todo)
       })
     },

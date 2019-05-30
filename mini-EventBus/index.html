@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event-bus test</title>
+</head>
+<body>
+
+    <script src="./event-bus.js"></script>
+    <script>
+      // 绑定事件监听
+      EventBus.on('add', (data) => {
+        console.log('add callback()', data)
+      })
+      EventBus.on('add', (data) => {
+        console.log('add callback2()', data)
+      })
+      EventBus.on('delete', (data) => {
+        console.log('delete callback2()', data)
+      })
+
+      // 解绑事件监听
+      // EventBus.off('add')
+      // EventBus.off()
+      // EventBus.off('update')
+      let a = undefined
+      EventBus.off(a)
+
+      // 分发事件
+      EventBus.emit('add', 'atguigu')
+      EventBus.emit('delete', 'atguigu2')
+      console.log('emit()之后')
+
+
+    </script>
+</body>
+</html>

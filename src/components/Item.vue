@@ -39,6 +39,7 @@
           // this.toggleTodo(this.todo)
           // 通过事件总线分发事件
           this.$bus.$emit('toggleTodo', this.todo)
+          console.log('emit()之后')
         }
       }
     },
