@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>pub-sub test</title>
+</head>
+<body>
+
+    <script src="./pub-sub.js"></script>
+    <script>
+      // 订阅消息
+      const token = PubSub.subscribe('add', (data) => {
+        console.log('add callback()', data)
+      })
+      PubSub.subscribe('add', (data) => {
+        console.log('add callback2()', data)
+      })
+      PubSub.subscribe('delete', (data) => {
+        console.log('delete callback()', data)
+      })
+
+
+      // 取消订阅
+      // PubSub.unsubscribe()
+      // PubSub.unsubscribe(token)
+      // PubSub.unsubscribe('add')
+      // PubSub.unsubscribe('update')
+
+      // 发布消息(异步)
+      PubSub.publish('add', 'atguigu')
+      console.log('async publish()之后')
+      // 发布消息(同步)
+      PubSub.publishSync('delete', 'atguigu2222')
+      console.log('sync publish()之后')
+    </script>
+</body>
+</html>
