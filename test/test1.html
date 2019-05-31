@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    // 测试题1
+    /* for (var i = 0; i < 5; i++) {
+      setTimeout(function () {
+        console.log(i);
+      }, 1000 * i);
+    }  */ // 5 5 5 5 5
+
+    // 测试题2
+    /* for (var i = 0; i < 5; i++) {
+      (function (i) {
+        setTimeout(function () {
+          console.log(i);
+        }, i * 1000);
+      })(i);
+    } 
+    console.log(i) */ // 5 0 1 2 3 4
+
+    // 测试题3
+    /* for (var i = 0; i < 5; i++) {
+      (function () {
+        setTimeout(function () {
+          console.log(i);
+        }, i * 1000);
+      })(i);
+    } */ // 5 5 5 5 5   
+
+    // 测试题4
+    /* for (var i = 0; i < 5; i++) {
+      setTimeout((function (i) {
+        console.log(i);
+      })(i), i * 1000);
+    } */ // 01234
+
+    // 测试题5
+    /* setTimeout(function () {
+      console.log(1)
+    }, 0);
+    new Promise(function executor(resolve) {
+      console.log(2);
+      for (var i = 0; i < 10000; i++) {
+        i == 9999 && resolve();
+      }
+      console.log(3);
+    }).then(function () {
+      console.log(4);
+    });
+    console.log(5); */
+
+  </script>
+</body>
+
+</html>

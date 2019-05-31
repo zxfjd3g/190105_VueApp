@@ -2,21 +2,13 @@
 入口js
  */
 import Vue from 'vue'
+import VueResource from 'vue-resource'
+
 import App from './App.vue'
-import Item from './components/Item.vue'
-// import './base.css'
 
-Vue.filter() // 注册全局过滤器
-Vue.directive() // 注册全局指令
-Vue.component('Item', Item) // 注册全局组件
+// 声明使用vue插件
+Vue.use(VueResource) // 内部给Vue的原型对象上添加了一个能发ajax请求的属性对象$http
 
-/*
-创建一个vm作为事件总线对象保存Vue原型对象(所有组件对象都直接可见)
-  $on(): 绑定事件监听
-  $emit(): 分发事件
-  $off(): 解除事件绑定
- */
-Vue.prototype.$bus = new Vue()
 
 /* eslint-disable no-new */
 new Vue({
