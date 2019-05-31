@@ -2,8 +2,8 @@
 ## 1. 说说MVVM设计模式
     M: Model(模型), vue中是data(为view提供数据)
     V: View(视图), vue中是模板页面(显示data中的数据)
-    VM: ViewModel(视图模型), vue中是Vue实例对象(管理者: 数据绑定/DOM监听) 
-    
+    VM: ViewModel(视图模型), vue中是Vue实例对象(管理者: 数据绑定/DOM监听)
+
 ## 2. 说说你对计算属性的理解
     什么时候用计算属性?
        模板显示要显示的数据是根据n个已有的相关数据进行计算来确定
@@ -12,7 +12,7 @@
 
 ## 3. 区别computed与method和watch
     1). computed与method: computed有缓存可以避免重复计算, 而method不可以
-    2). computed与watch: 
+    2). computed与watch:
         get(): 可以监视所有依赖数据, 编码简洁, 但只能同步计算产生一个需要显示的结果数据
         watch: 可以监视所有依赖数据, 编码麻烦, 可以进行异步/长时间处理后更新数据显示
 
@@ -59,7 +59,7 @@
        git pull origin master
     6). 克隆远程仓库到本地
        git clone https://github.com/zxfjd3g/xxx.git
-       
+
 ## 7. 函数的2个角色, 方法与属性, 方法与函数
     1). 函数的2个角色:
         函数: 通过()调用
@@ -73,7 +73,7 @@
 ## 1. data中的数组与对象属性不同处理
     数组: 重写数组更新数组元素的方法, 只要调用数组的这些方法, 就会更新相应的界面
     对象: 对对象中的属性进行setter监视, 只要设置了新的属性值, 就会更新相应的界面
-    
+
 ## 2. 写出7个指令及其作用
     v-text: 设置标签体文本
     v-html: 设置标签体子标签
@@ -82,7 +82,7 @@
     v-bind: 强制绑定表达式, 简写:
     v-on: 绑定事件监听, 简写@
     v-model: 双向数据绑定
-    
+
 ## 3. 写出vue 7个配置选项及其作用
     el: 最外层元素选择器
     props: 声明接收哪些属性
@@ -93,7 +93,7 @@
     directives: 注册局部指令
     filters: 注册局部过滤器
     components: 局部注册组件
-    
+
 ## 4. 说说vue的生命周期
     1). 初始化
        beforeCreate()
@@ -114,7 +114,7 @@
     定义变量/常量: const/let
     解构赋值: let {a, b} = this.props / import {aa} from 'xxx' / function f ({name}) {}
     对象的简洁表达: {a, b, c () {}}
-    箭头函数: 
+    箭头函数:
        组件的自定义方法: xxx = () => {}
        匿名函数作为实参
        优点:
@@ -134,21 +134,21 @@
        返回一个新函数, 不会自动执行, 需要手动执行
        新函数内部会通过原函数对象的call来调用原本的函数, 并指定函数的this为obj
        如果直接调用原来函数, this没有绑定为obj
-       
+
 # day03
 
 ## 1. vm对象与组件对象的关系
     1). 组件对象的原型对象是一个vm对象
     2). 任何组件对象都能看到Vue原型对象上的属性/方法
     3). 一旦在Vue原型对象上添加属性/方法, 任何组件中都可以直接通过this来访问
-    4). 基于vue的事件总线机制: 
-        main.js中: Vue.prototype.$bus = new Vue(), 
+    4). 基于vue的事件总线机制:
+        main.js中: Vue.prototype.$bus = new Vue(),
         组件中: this.$bus.$on()/$emit()/$off()
-        
+
 ## 2. 说说vue组件间通信的几种方式
     1). props
         父子组件间通信的基本方式
-        属性值的2大类型: 
+        属性值的2大类型:
             一般: 父组件-->子组件
             函数: 子组件-->父组件
         隔层组件间传递: 必须逐层传递(麻烦)
@@ -186,7 +186,7 @@
 ## 4. 详细说明如何判断函数中的this
     1). 正常情况: 执行函数的方式决定了函数中的this
        直接调用: fn()       window
-       new调用: new fn()   新创建的对象 
+       new调用: new fn()   新创建的对象
        对象调用: obj.fn()   obj对象
        call/apply调用: fn.call(obj)   第一个参数指定的对象
     2). 特别情况:
@@ -197,7 +197,7 @@
           dom事件监听回调: dom元素
           组件生命周期回调: 组件对象
     3). 在开发我们经常会利用箭头函数/bind()来改变this的指向
-    
+
 ## 5. 说说你对事件处理机制的理解
     1). DOM事件
        * 绑定事件监听
@@ -220,3 +220,9 @@
     const fn2 = new Foo()
     const o1 = {}
     const o2 = new Object()
+
+# day04
+
+
+
+
