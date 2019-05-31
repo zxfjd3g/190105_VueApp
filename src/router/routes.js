@@ -17,6 +17,7 @@ export default [{
     component: Home,
     children: [
       {
+        name: 'news',
         path: '/home/news',
         component: News
       },
@@ -26,7 +27,10 @@ export default [{
         children: [
           {
             path: '/home/message/detail/:id',
-            component: MessageDetail
+            component: MessageDetail,
+            props: (route) => ({// 将路由参数映射成标签属性传入
+              id: route.params.id
+            })
           }
         ]
       },

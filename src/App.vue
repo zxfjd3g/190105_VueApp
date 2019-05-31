@@ -20,8 +20,11 @@
       <div class="col-xs-6">
         <div class="panel">
           <div class="panel-body">
-            <!-- 在此显示当前路由组件界面 -->
-            <router-view msg='abc'></router-view>
+            <keep-alive> <!-- 使对应的路由组件在被切换时不死亡 -->
+              <!-- 在此显示当前路由组件界面 -->
+              <router-view msg='abc'></router-view>
+            </keep-alive>
+            
           </div>
         </div>
       </div>

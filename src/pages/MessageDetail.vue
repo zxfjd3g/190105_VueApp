@@ -1,6 +1,7 @@
 <template>
   <ul>
-    <li>ID: {{$route.params.id}}</li>
+    <!-- <li>ID: {{$route.params.id}}</li> -->
+    <li>ID: {{id}}</li>
     <li>TITLE: {{detail.title}}</li>
     <li>CONTENT: {{detail.content}}</li>
   </ul>
@@ -12,6 +13,10 @@
           {id: 5, title: 'message005',  content: 'message content005'},
         ]
   export default {
+    props: {
+      id: String
+    },
+
     data () {
       return {
         detail: {} // 当前需要显示的detail对象
@@ -26,6 +31,9 @@
     watch: {
       $route (val) { // 路由信息发生了改变
         this.showDetail(val)
+      },
+      id (val) {
+        console.log('id=', val)
       }
     },
 
