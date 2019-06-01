@@ -65,7 +65,9 @@ const getters = {
   }
 }
 
-
+/*
+向外默认暴露store
+*/
 export default new Vuex.Store({
   state,
   mutations,

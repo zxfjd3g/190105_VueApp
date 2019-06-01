@@ -2,7 +2,11 @@
 入口js
  */
 import Vue from 'vue'
+import VueResource from 'vue-resource'
+
 import App from './App.vue'
+import store from './store'
+
 
 /* eslint-disable no-new */
 new Vue({
@@ -11,4 +15,5 @@ new Vue({
     App,
   },
   template: '<App/>',
+  store
 })
