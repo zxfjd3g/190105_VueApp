@@ -111,3 +111,95 @@
 				token3: subscriber3
 			}
 		}
+
+## 7. ajax
+    相关库:
+        vue-resource: vue插件, 多用于vue1.x
+        axios: 第三方库, 多用于vue2.x
+    vue-resource使用
+        // 引入模块
+        import VueResource from 'vue-resource'
+        // 使用插件
+        Vue.use(VueResource)
+
+        // 通过vue/组件对象发送ajax请求
+        this.$http.get('/someUrl').then((response) => {
+          // success callback
+          console.log(response.data) //返回结果数据
+        }, (response) => {
+          // error callback
+          console.log(response.statusText) //错误信息
+        })
+    axios使用
+        // 引入模块
+        import axios from 'axios'
+
+        // 发送ajax请求
+        axios.get(url)
+          .then(response => {
+            console.log(response.data) // 得到返回结果数据
+          })
+          .catch(error => {
+        	console.log(error.message)
+          })
+
+## 8. vue UI组件库
+    常用的UI组件库
+        PC: Element / iview /
+        Mobile: mint-ui / cube-ui
+    mint-ui的使用
+        根据官方文档使用
+        按需打包
+
+## 9. vue-router
+    vue用来实现SPA的插件
+    使用vue-router
+        1. 创建路由器: router/index.js
+          new VueRouter({
+            routes: [
+              { // 一般路由
+                path: '/about',
+                component: About
+              },
+              { // 自动跳转路由
+                path: '/',
+                redirect: '/about'
+              }
+            ]
+          })
+        2. 注册路由器: main.js
+           import router from './router'
+           	new Vue({
+           		router
+           	})
+        3. 使用路由组件标签:
+           	<router-link to="/xxx">Go to XXX</router-link>
+           	<router-view></router-view>
+    编写路由的3步
+        1. 定义路由组件
+        2. 映射路由
+        3. 编写路由2个标签
+    嵌套路由
+        children: [
+            {
+              path: '/home/news/:xxx/:yyy',
+              component: news
+            },
+            {
+              path: 'message',
+              component: message
+            }
+        ]
+    向路由组件传递数据
+        params/query: <router-link to="/home/news/abc/123?zzz=1234">
+        将请求参数映射成props: props: route => ({id: route.params.id})
+        变相props: <router-view msg='abc'>
+    缓存路由组件
+        路由组件对象默认的生命周期: 被切换时就会死亡, 切换回来时重新创建
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+    路由的编程式导航
+        this.$router.push(path): 相当于点击路由链接(可以返回到当前路由界面)
+        this.$router.replace(path): 用新路由替换当前路由(不可以返回到当前路由界面)
+        this.$router.back(): 请求(返回)上一个记录路由

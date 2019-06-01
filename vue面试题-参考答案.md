@@ -223,6 +223,46 @@
 
 # day04
 
+## 1. 说说vue项目中如何与后台通信
+    1). 通过ajax请求与后台通信
+    2). 如何发送ajax请求
+      XMLHttpRequest: 原生方式, 所有浏览器都支持
+      fetch: 较新的原生方式, 但需要引入兼容包: fetch.js
+      vue-resource: vue的插件, 用于vue1.x
+      axios: 独立的第三方库, 用于vue2.x
+    3). 执行请求代码的时机
+       初始化异步显示: mounted()
+       特定用户操作后异步显示: 事件回调函数或相关函数中
+
+## 2. vue-router提供了哪些语法?
+    1). 1个函数:
+        VueRouter: 路由构造函数, 用于创建路由器对象, 配置路由
+    2). 2个对象
+        $route: 代表当前路由的对象, 包含当前路由相关信息(path, params参数, query参数)
+        $router: 代表路由器对象, 包含控制路由跳转的方法(push/replce/back())
+    3). 2个标签
+        <router-link>: 路由链接, 生成路由链接
+        <router-view>: 路由视图, 显示当前路由组件
+
+## 3. GET请求的2种请求参数
+    1). query参数:
+       路由path: /register
+       请求path: /register?username=xxx&password=yyy
+       获取参数: req/route.query.username
+    2). param参数:
+       路由path: /register/:username/:password
+       请求path: /register/xxx/123
+       获取参数: req/route.params.username
+
+## 4. 关于2个引用变量指向同一个对象的2个问题
+    1). 2个引用变量指向同个对象, 通过一个引用变量改变对象内部的数据, 另一个引用变量看到的新的
+    2). 2个引用变量指向同个对象, 让一个引用变量指向一个新的对象, 另一个引用变量看到的还是原来的对象
+
+## 5. 说说读取表达式a.b的值的查找流程
+    1). 先查找a, 沿着作用域链查找, 找不到报错(变量未定义)
+    2). 找到后查找对象上的b属性, 查找原型链, 如果找不到返回undefined
+
+
 
 
 
