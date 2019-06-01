@@ -156,6 +156,7 @@
     使用vue-router
         1. 创建路由器: router/index.js
           new VueRouter({
+            mode: 'hash/history'
             routes: [
               { // 一般路由
                 path: '/about',
@@ -175,6 +176,9 @@
         3. 使用路由组件标签:
            	<router-link to="/xxx">Go to XXX</router-link>
            	<router-view></router-view>
+        4. 2个对象
+            $router: 代表路由器对象, 包含一些实现路由跳转/导航的方法: push()/replace()/back()
+            $route: 代表当前路由对象, 包含一些路由相关的属性: path/params/query/meta
     编写路由的3步
         1. 定义路由组件
         2. 映射路由

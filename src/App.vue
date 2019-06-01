@@ -1,39 +1,39 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-xs-offset-2 col-xs-8">
-        <div class="page-header">
-          <h2>Router Basic - 01</h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-2 col-xs-offset-2">
-        <div class="list-group">
-          <!-- 路由链接 -->
-          <router-link class="list-group-item" to="/about">About</router-link>
-          <router-link class="list-group-item" to="/home">Home</router-link>
-        </div>
-      </div>
-
-      <div class="col-xs-6">
-        <div class="panel">
-          <div class="panel-body">
-            <keep-alive> <!-- 使对应的路由组件在被切换时不死亡 -->
-              <!-- 在此显示当前路由组件界面 -->
-              <router-view msg='abc'></router-view>
-            </keep-alive>
-            
-          </div>
-        </div>
-      </div>
-    </div>
+    <p>click {{count}} times count is {{evenOrOdd}}</p>
+    <button @click='increment'>+</button>
+    <button @click='decrement'>-</button>
+    <button @click='incrementIfOdd'>increment if odd</button>
+    <button @click='incrementAsync'>increment async</button>
   </div>
 </template>
 <script>
   export default {
+    
+    computed: {
+      evenOrOdd () {
+        return this.count % 2 === 0 ? '偶数' : '奇数'
+      }
+    },
 
+    methods: {
+      increment () {
+        this.count++
+      },
+      decrement () {
+        this.count--
+      },
+      incrementIfOdd () {
+        if (this.count%2===1) {
+          this.count++
+        }
+      },
+      incrementAsync () {
+        setTimeout(() => {
+          this.count++
+        }, 1000);
+      },
+    }
   }
 
 </script>
