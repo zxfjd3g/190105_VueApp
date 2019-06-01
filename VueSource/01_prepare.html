@@ -86,9 +86,6 @@
     writable: false,
   }) */
 
-
-
-
   // 4. Object.keys(obj): 得到对象自身可枚举属性组成的数组
   const keys = Object.keys(p)
   console.log(keys)  // p[key]
@@ -97,6 +94,35 @@
   console.log(p.hasOwnProperty('fullName'), p.hasOwnProperty('toString')) // true, false
 
   // 6. DocumentFragment: 文档碎片(高效批量更新多个节点)
+
+  /*
+  <div id="demo">
+    <ul>
+      <li>test1</li>
+      <li>test2</li>
+      <li>test3</li>
+    </ul>
+  </div>
+  */
+  // 创建一个fragment对象容器(只存在于内存)
+  const fragment = document.createDocumentFragment()
+  // 将div的所有子节点转移到fragment中
+  const div = document.getElementById('demo')
+  let child
+  while(child=div.firstChild) {
+    fragment.appendChild(child) // 先从div中移除child, 并将其添加为fragment的子节点
+  }
+
+  // 更新fragment中所有li
+  const lis5 = fragment.childNodes[1].children
+  Array.prototype.slice.call(lis5).forEach(li => {
+    li.textContent = 'atguigu'  // 没有更新界面
+  })
+
+  // 将fragment添加为div的子节点
+  div.appendChild(fragment)
+
+
 </script>
 </body>
 </html>
