@@ -34,3 +34,20 @@
 ## 3. GET请求的2种请求参数
 ## 4. 关于2个引用变量指向同一个对象的2个问题
 ## 5. 说说读取表达式a.b的值的查找流程
+
+# day05
+## 1. 内存结构图(原型结构图)
+    function Foo () {}
+    const fn1 = new Foo()
+    const fn2 = new Foo()
+    const o1 = {}
+    const o2 = new Object()
+## 2. JS事件循环机制结构图
+## 3. redux结构图
+## 4. vuex结构图
+
+
+
+
+
+
