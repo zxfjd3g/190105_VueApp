@@ -5,11 +5,11 @@
   </div>
 </template>
 <script>
-  import Search from './components/Search'
-  import Main from './components/Main'
+  import Search from './components/Search.vue'
+  import Main from './components/Main.vue'
 
   export default {
-    
+
     components: {
       Search,
       Main
@@ -17,5 +17,5 @@
   }
 </script>
 <style>
-  
+
 </style>
