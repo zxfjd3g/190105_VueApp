@@ -2,7 +2,7 @@ function Watcher(vm, exp, cb) {
     this.cb = cb;
     this.vm = vm;
     this.exp = exp;
-    this.depIds = {};
+    this.depIds = {};// dep0, dep1   {0: dep0, 1: dep1}
     this.value = this.get();
 }
 

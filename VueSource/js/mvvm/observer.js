@@ -7,13 +7,9 @@ Observer.prototype = {
     walk: function(data) {
         var me = this;
         Object.keys(data).forEach(function(key) {
-            me.convert(key, data[key]);
+            me.defineReactive(data, key, data[key]);
         });
     },
-    convert: function(key, val) {
-        this.defineReactive(this.data, key, val);
-    },
-
     defineReactive: function(data, key, val) {
         var dep = new Dep();
         var childObj = observe(val);
@@ -54,7 +50,7 @@ var uid = 0;
 
 function Dep() {
     this.id = uid++;
-    this.subs = [];
+    this.subs = [];  // subscribers订阅者(watcher)的数组
 }
 
 Dep.prototype = {
