@@ -58,22 +58,29 @@ Compile.prototype = {
   },
 
   compile: function (node) {
+    // 得到所有的属性节点
     var nodeAttrs = node.attributes,
       me = this;
-
+    // 遍历每个属性节点
     [].slice.call(nodeAttrs).forEach(function (attr) {
+      // 得到属性名: v-on:click
       var attrName = attr.name;
+      // 如果是指令属性
       if (me.isDirective(attrName)) {
+        // 得到属性值/表达式: update
         var exp = attr.value;
+        // 得到指令名: on:click
         var dir = attrName.substring(2);
-        // 事件指令
+        // 如果是事件指令
         if (me.isEventDirective(dir)) {
+          // 解析事件指令
           compileUtil.eventHandler(node, me.$vm, exp, dir);
-          // 普通指令
+        // 如果是普通指令
         } else {
+          // 解析普通指令
           compileUtil[dir] && compileUtil[dir](node, me.$vm, exp);
         }
-
+        // 删除指令属性
         node.removeAttribute(attrName);
       }
     });
@@ -156,12 +163,14 @@ var compileUtil = {
     });
   },
 
-  // 事件处理
+  // 解析处理事件指令
   eventHandler: function (node, vm, exp, dir) {
+    // 得到事件名/类型: click
     var eventType = dir.split(':')[1],
+    // 得到事件监听回调函数(根据表达式从methods中取出)
       fn = vm.$options.methods && vm.$options.methods[exp];
-
     if (eventType && fn) {
+      // 给元素节点绑定指定事件名和回调函数的DOM事件监听(强制绑定回调函数的this为vm)
       node.addEventListener(eventType, fn.bind(vm), false);
     }
   },
@@ -206,12 +215,10 @@ var updater = {
 
   // 更新节点的className属性
   classUpdater: function (node, value, oldValue) {
-    var className = node.className;
-    className = className.replace(oldValue, '').replace(/\s$/, '');
+    var className = node.className;  // classB
 
-    var space = className && String(value) ? ' ' : '';
 
-    node.className = className + space + value;
+    node.className = className ? (className + ' ' + value) : value
   },
 
   // 更新节点的value属性
